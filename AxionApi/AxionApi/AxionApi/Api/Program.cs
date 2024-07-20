@@ -1,21 +1,17 @@
-using AxionApi.Configuration;
-using Microsoft.AspNetCore.Authentication.JwtBearer;
-using Microsoft.AspNetCore.Authorization;
-using Microsoft.EntityFrameworkCore;
-using Microsoft.Extensions.DependencyInjection;
-using Microsoft.IdentityModel.Tokens;
+using Api.Configuration;
+using Api.EndpointBuilders;
 using SmallApiToolkit.Extensions;
 using SmallApiToolkit.Middleware;
-using System.Security.Claims;
-using System.Text;
+using Core.Configuration;
+
+using Infrastructure.Configuration;
+
+
 
 var builder = WebApplication.CreateBuilder(args);
 
-// Add services to the container.
-// Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
-builder.Services.AddSwaggerGen();
-
+builder.Services.ConfigureSwagger();
 builder.Services.ConfigureAuthentication(builder.Configuration);
 builder.Services.ConfigureAuthorization();
 
@@ -26,7 +22,7 @@ builder.Services
 
 
 
-    var app = builder.Build();
+var app = builder.Build();
 
 if (app.Environment.IsDevelopment())
 {

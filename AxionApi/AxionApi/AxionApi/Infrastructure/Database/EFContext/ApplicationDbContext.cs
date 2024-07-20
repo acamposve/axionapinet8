@@ -3,11 +3,11 @@ using Microsoft.EntityFrameworkCore;
 
 namespace Infrastructure.Database.EFContext;
 
-public class ApplicationDbContext : DbContext
+internal class UserContext : DbContext
 {
-    public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options) : base(options) { }
+    public UserContext(DbContextOptions<UserContext> options)
+        : base(options) { }
 
-    public DbSet<UserEntity> Users { get; set; }
-    public DbSet<CategoryEntity> Categories { get; set; }
-    public DbSet<ProductEntity> Products { get; set; }
+    public virtual DbSet<UserEntity> Users => Set<UserEntity>();
+    public virtual DbSet<RoleEntity> Roles => Set<RoleEntity>();
 }
