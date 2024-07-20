@@ -146,3 +146,7 @@
 /AxionApi/AxionApi/AxionApi/Infrastructure/obj/Infrastructure.csproj.nuget.g.targets
 /AxionApi/AxionApi/AxionApi/Infrastructure/obj/project.assets.json
 /AxionApi/AxionApi/AxionApi/Infrastructure/obj/project.nuget.cache
+/AxionApi/AxionApi/AxionApi/Core/obj/Core.csproj.nuget.dgspec.json
+/AxionApi/AxionApi/AxionApi/Core/obj/Core.csproj.nuget.g.props
+/AxionApi/AxionApi/AxionApi/Core/obj/project.assets.json
+/AxionApi/AxionApi/AxionApi/Core/obj/project.nuget.cache
