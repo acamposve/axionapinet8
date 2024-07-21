@@ -1,5 +1,4 @@
-﻿using Ardalis.GuardClauses;
-using Microsoft.AspNetCore.Authentication.JwtBearer;
+﻿using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.IdentityModel.Tokens;
 using System.Text;
 
@@ -9,7 +8,7 @@ public static class AuthenticationConfiguration
 {
     public static IServiceCollection ConfigureAuthentication(this IServiceCollection serviceCollection, IConfiguration configuration)
     {
-        var jwtKey = Guard.Against.NullOrEmpty(configuration["Jwt:Key"]);
+        var jwtKey = configuration["Jwt:Key"];
 
         serviceCollection.AddAuthentication(options =>
         {

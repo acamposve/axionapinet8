@@ -1,5 +1,4 @@
-﻿using Ardalis.GuardClauses;
-using Core.Abstractions.Commands;
+﻿using Core.Abstractions.Commands;
 using Core.Abstractions.Services;
 using Core.Resources;
 using Domain.Commands;
@@ -18,9 +17,9 @@ internal sealed class LoginCommandHandler : ILoginCommandHandler
 
     public LoginCommandHandler(ITokenService tokenService, IAccountService accountService, IValidator<LoginCommand> validator)
     {
-        _tokenService = Guard.Against.Null(tokenService);
-        _accountService = Guard.Against.Null(accountService);
-        _validator = Guard.Against.Null(validator);
+        _tokenService = tokenService;
+        _accountService = accountService;
+        _validator = validator;
     }
 
     public async Task<HttpDataResponse<LoggedUserDto>> HandleAsync(LoginCommand request, CancellationToken cancellationToken)

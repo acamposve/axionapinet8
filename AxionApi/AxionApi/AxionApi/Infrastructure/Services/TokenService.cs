@@ -1,5 +1,4 @@
-﻿using Ardalis.GuardClauses;
-using Core.Abstractions.Services;
+﻿using Core.Abstractions.Services;
 using Domain.Dtos;
 using Infrastructure.Options;
 using Microsoft.Extensions.Options;
@@ -15,8 +14,8 @@ internal sealed class TokenService : ITokenService
     private readonly IOptions<TokenOptions> _tokenOptions;
     public TokenService(IOptions<TokenOptions> tokenOptions)
     {
-        _tokenOptions = Guard.Against.Null(tokenOptions);
-        Guard.Against.NullOrEmpty(_tokenOptions?.Value?.Key);
+        _tokenOptions = tokenOptions;
+
     }
     public string GenerateToken(UserDto user)
     {

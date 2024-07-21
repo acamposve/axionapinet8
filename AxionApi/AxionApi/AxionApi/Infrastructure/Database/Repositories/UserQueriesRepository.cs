@@ -1,13 +1,12 @@
-﻿using Ardalis.GuardClauses;
-using Core.Abstractions.Repositories;
+﻿using Core.Abstractions.Repositories;
 using Domain.Dtos;
 using FluentResults;
 using Infrastructure.Abstractions;
-using Infrastructure.Database.EFContext.Entities;
 using Infrastructure.Database.EFContext;
+using Infrastructure.Database.EFContext.Entities;
 using Infrastructure.Resources;
-using Microsoft.EntityFrameworkCore;
 using Mapster;
+using Microsoft.EntityFrameworkCore;
 
 namespace Infrastructure.Database.Repositories;
 
@@ -16,7 +15,7 @@ internal sealed class UserQueriesRepository : IUserQueriesRepository, ISecretUse
     private readonly UserContext _context;
     public UserQueriesRepository(UserContext userContext)
     {
-        _context = Guard.Against.Null(userContext);
+        _context = userContext;
     }
     public async Task<Result<UserEntity>> FindUser(string username, CancellationToken cancellationToken)
     {

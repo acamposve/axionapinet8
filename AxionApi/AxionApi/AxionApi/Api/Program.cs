@@ -5,10 +5,14 @@ using SmallApiToolkit.Middleware;
 using Core.Configuration;
 
 using Infrastructure.Configuration;
+using Serilog;
+using Api.Middleware;
 
 
 
 var builder = WebApplication.CreateBuilder(args);
+
+builder.Host.UseSerilog((ctx, lc) => lc.ReadFrom.Configuration(ctx.Configuration));
 
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.ConfigureSwagger();
@@ -41,7 +45,10 @@ app.MapVersionGroup(1)
    .BuildUserEndpoints()
    .BuildServiceEndpoints();
 
-await app.Services.AddDefaultRoles();
-await app.Services.AddDefaultUsers();
+//await app.Services.AddDefaultRoles();
+//await app.Services.AddDefaultUsers();
 
+app.UseMiddleware<RequestLogContextMiddleware>();
+
+app.UseSerilogRequestLogging();
 app.Run();

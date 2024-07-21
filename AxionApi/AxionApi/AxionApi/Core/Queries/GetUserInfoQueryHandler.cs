@@ -1,5 +1,4 @@
-﻿using Ardalis.GuardClauses;
-using Core.Abstractions.Queries;
+﻿using Core.Abstractions.Queries;
 using Core.Abstractions.Repositories;
 using Domain.Dtos;
 using SmallApiToolkit.Core.Extensions;
@@ -13,7 +12,7 @@ internal sealed class GetUserInfoQueryHandler : IGetUserInfoQueryHandler
 
     public GetUserInfoQueryHandler(IUserQueriesRepository userQueriesRepository)
     {
-        _userQueriesRepository = Guard.Against.Null(userQueriesRepository);
+        _userQueriesRepository = userQueriesRepository;
     }
     public async Task<HttpDataResponse<IEnumerable<UserDto>>> HandleAsync(EmptyRequest request, CancellationToken cancellationToken)
     {
