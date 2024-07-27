@@ -25,7 +25,7 @@ public static class ContainerConfigurationExtension
 
         return serviceCollection
         .RegisterMapsterConfiguration()
-            .AddDatabase()
+            .AddDatabase(configuration)
             .AddServices();
     }
 
@@ -39,7 +39,12 @@ public static class ContainerConfigurationExtension
     {
         TypeAdapterConfig<RegisterCommand, UserEntity>
         .NewConfig()
-        .Map(dest => dest.Password, src => PasswordHasher.HashPassword(src.Password));
+        .Map(dest => dest.Password, src => PasswordHasher.HashPassword(src.Password))
+         .Map(dest => dest.FirstName, src => src.Firstname)
+         .Map(dest => dest.LastName, src => src.Lastname)
+
+         .Map(dest => dest.Address, src => src.Address)
+         .Map(dest => dest.PhoneNumber, src => src.PhoneNumber);
 
         TypeAdapterConfig<UserEntity, UserDto>
         .NewConfig()
@@ -48,9 +53,10 @@ public static class ContainerConfigurationExtension
         return serviceCollection;
     }
 
-    private static IServiceCollection AddDatabase(this IServiceCollection serviceCollection)
-    => serviceCollection
-            .AddDbContext<UserContext>(opt => opt.UseSqlServer(, IConfiguration configuration))
+    public static IServiceCollection AddDatabase(this IServiceCollection serviceCollection, IConfiguration configuration)
+    {
+        return serviceCollection
+            .AddDbContext<UserContext>(opt => opt.UseSqlServer(configuration.GetConnectionString("DefaultConnection")))
             .AddScoped<IUserQueriesRepository, UserQueriesRepository>()
             .AddScoped<ISecretUserQueriesRepository, UserQueriesRepository>()
             .AddScoped<ISecretUserCommandsRepository, UserCommandsRepository>()
@@ -58,4 +64,5 @@ public static class ContainerConfigurationExtension
             .AddScoped<ISecretRoleQueriesRepository, RoleQueriesRepository>()
             .AddScoped<ISecretRoleCommandRepository, RoleCommandRepository>()
             .AddScoped<IUserCommandsRepository, UserCommandsRepository>();
+    }
 }

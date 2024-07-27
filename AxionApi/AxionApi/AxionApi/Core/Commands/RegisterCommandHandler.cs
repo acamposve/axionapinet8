@@ -1,5 +1,4 @@
-﻿using Ardalis.GuardClauses;
-using Core.Abstractions.Commands;
+﻿using Core.Abstractions.Commands;
 using Core.Abstractions.Services;
 using Core.Resources;
 using Domain.Commands;
@@ -16,8 +15,8 @@ internal sealed class RegisterCommandHandler : IRegisterCommandHandler
 
     public RegisterCommandHandler(IAccountService accountService, IValidator<RegisterCommand> validator)
     {
-        _accountService = Guard.Against.Null(accountService);
-        _validator = Guard.Against.Null(validator);
+        _accountService = accountService;
+        _validator = validator;
     }
     public async Task<HttpDataResponse<bool>> HandleAsync(RegisterCommand request, CancellationToken cancellationToken)
     {

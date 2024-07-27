@@ -1,5 +1,4 @@
-﻿using Ardalis.GuardClauses;
-using Core.Abstractions.Repositories;
+﻿using Core.Abstractions.Repositories;
 using FluentResults;
 using Infrastructure.Abstractions;
 using Infrastructure.Database.EFContext;
@@ -14,7 +13,7 @@ internal sealed class RoleQueriesRepository : IRoleQueriesRepository, ISecretRol
     private readonly UserContext _context;
     public RoleQueriesRepository(UserContext userContext)
     {
-        _context = Guard.Against.Null(userContext);
+        _context = userContext;
     }
 
     public async Task<IEnumerable<RoleEntity>> GetRoleEntities(CancellationToken cancellationToken)

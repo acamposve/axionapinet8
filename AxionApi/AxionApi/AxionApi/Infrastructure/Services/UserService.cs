@@ -1,5 +1,4 @@
-﻿using Ardalis.GuardClauses;
-using Core.Abstractions.Services;
+﻿using Core.Abstractions.Services;
 using Domain.Commands;
 using FluentResults;
 using Infrastructure.Abstractions;
@@ -17,9 +16,9 @@ internal sealed class UserService : IUserService
         ISecretUserCommandsRepository secretUserCommandsRepository,
         ISecretRoleQueriesRepository secretRoleQueriesRepository)
     {
-        _secretUserQueriesRepository = Guard.Against.Null(secretUserQueriesRepository);
-        _secretUserCommandsRepository = Guard.Against.Null(secretUserCommandsRepository);
-        _secretRoleQueriesRepository = Guard.Against.Null(secretRoleQueriesRepository);
+        _secretUserQueriesRepository = secretUserQueriesRepository;
+        _secretUserCommandsRepository = secretUserCommandsRepository;
+        _secretRoleQueriesRepository = secretRoleQueriesRepository;
     }
 
     public async Task<Result<bool>> ChangeUserRole(ChangeRoleCommand changeRoleCommand, CancellationToken cancellationToken)

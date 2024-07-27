@@ -1,5 +1,4 @@
-﻿using Ardalis.GuardClauses;
-using Core.Abstractions.Commands;
+﻿using Core.Abstractions.Commands;
 using Core.Abstractions.Repositories;
 using Core.Abstractions.Services;
 using Core.Resources;
@@ -18,9 +17,9 @@ internal sealed class ChangeRoleCommandHandler : IChangeRoleCommandHandler
 
     public ChangeRoleCommandHandler(IUserService userService, IRoleQueriesRepository roleQueriesRepository, IValidator<ChangeRoleCommand> validator)
     {
-        _userService = Guard.Against.Null(userService);
-        _roleQueriesRepository = Guard.Against.Null(roleQueriesRepository);
-        _validator = Guard.Against.Null(validator);
+        _userService = userService;
+        _roleQueriesRepository = roleQueriesRepository;
+        _validator = validator;
     }
 
     public async Task<HttpDataResponse<bool>> HandleAsync(ChangeRoleCommand request, CancellationToken cancellationToken)

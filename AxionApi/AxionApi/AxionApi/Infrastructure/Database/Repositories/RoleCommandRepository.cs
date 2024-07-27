@@ -1,7 +1,6 @@
-﻿using Ardalis.GuardClauses;
+﻿using Domain.Extensions;
 using Infrastructure.Abstractions;
 using Infrastructure.Database.EFContext;
-using Domain.Extensions;
 using Infrastructure.Database.EFContext.Entities;
 namespace Infrastructure.Database.Repositories;
 
@@ -10,7 +9,7 @@ internal sealed class RoleCommandRepository : ISecretRoleCommandRepository
     private readonly UserContext _context;
     public RoleCommandRepository(UserContext userContext)
     {
-        _context = Guard.Against.Null(userContext);
+        _context = userContext;
     }
 
     public async Task AddRoles(IEnumerable<string> roles, CancellationToken cancellationToken)

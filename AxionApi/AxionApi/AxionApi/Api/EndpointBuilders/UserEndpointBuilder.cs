@@ -29,7 +29,11 @@ public static class UserEndpointBuilder
                 .WithOpenApi();
 
         endpointRouteBuilder.MapPost("register",
-            async (RegisterCommand loginCommand, [FromServices] IRegisterCommandHandler registerCommandHandler, CancellationToken cancellationToken) =>
+            async (RegisterCommand loginCommand, 
+            [FromServices] IRegisterCommandHandler registerCommandHandler, 
+            CancellationToken cancellationToken) =>
+            
+            
             await registerCommandHandler.SendAsync(loginCommand, cancellationToken))
                 .Produces<LoggedUserDto>()
                 .WithName("Register")
