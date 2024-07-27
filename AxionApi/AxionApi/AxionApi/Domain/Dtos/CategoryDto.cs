@@ -9,17 +9,9 @@ namespace Domain.Dtos;
 
 public class CategoryDto
 {
-    public string Name { get; init; } = string.Empty;
-    public string Description { get; init; } = string.Empty;
-    public string Image { get; init; } = string.Empty;
-    public string ProductName { get; init; } = string.Empty;
-    public string ProductImage { get; init; } = string.Empty;
-
-    public CategoryDto()
-    {
-
-
-    }
-
-
+    public int Id { get; set; }
+    public string Name { get; set; }
+    public string Description { get; set; }
+    public string Image { get; set; }
+    public List<ProductDto> Products { get; set; }
 }

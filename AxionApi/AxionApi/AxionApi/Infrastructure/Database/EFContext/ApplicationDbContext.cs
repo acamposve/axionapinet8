@@ -10,4 +10,7 @@ internal class UserContext : DbContext
 
     public virtual DbSet<UserEntity> Users => Set<UserEntity>();
     public virtual DbSet<RoleEntity> Roles => Set<RoleEntity>();
+
+    public virtual DbSet<CategoryEntity> Categories => Set<CategoryEntity>();
+    public virtual DbSet<ProductEntity> Products => Set<ProductEntity>();
 }

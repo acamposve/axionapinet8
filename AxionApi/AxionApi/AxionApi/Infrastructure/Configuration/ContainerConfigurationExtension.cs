@@ -50,6 +50,11 @@ public static class ContainerConfigurationExtension
         .NewConfig()
         .Map(dest => dest.Role, src => src.Role.Role);
 
+        TypeAdapterConfig<CategoryEntity, CategoryDto>.NewConfig()
+            .Map(dest => dest.Products, src => src.Products.Adapt<List<ProductDto>>());
+
+        TypeAdapterConfig<ProductEntity, ProductDto>.NewConfig();
+
         return serviceCollection;
     }
 

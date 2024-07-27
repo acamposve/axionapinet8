@@ -43,7 +43,8 @@ app.UseMiddleware<LoggingMiddleware>();
 
 app.MapVersionGroup(1)
    .BuildUserEndpoints()
-   .BuildServiceEndpoints();
+   .BuildServiceEndpoints()
+   .BuildCategoryEndpointBuilder();
 
 //await app.Services.AddDefaultRoles();
 //await app.Services.AddDefaultUsers();

@@ -61,6 +61,15 @@ namespace Infrastructure.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Category do not exist. Id {0}..
+        /// </summary>
+        internal static string CategoryNotExist {
+            get {
+                return ResourceManager.GetString("CategoryNotExist", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Role do not exist. Role {0}..
         /// </summary>
         internal static string RoleNotExist {
