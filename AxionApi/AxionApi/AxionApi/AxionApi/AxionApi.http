@@ -1,6 +1,0 @@
-@AxionApi_HostAddress = http://localhost:5157
-
-GET {{AxionApi_HostAddress}}/weatherforecast/
-Accept: application/json
-
-###
